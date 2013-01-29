@@ -5,17 +5,48 @@
 
 package vignerecipher;
 
+import java.awt.Graphics;
+import javax.swing.JApplet;
+
 /**
  *
  * @author Intel
  */
-public class Main {
+public class Main extends JApplet {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    @Override
+    public void init() {
+        buffer = new StringBuffer();
+        addItem("Initializing..\n");
     }
 
+    @Override
+    public void start() {
+        addItem("Starting..\n");
+    }
+
+    @Override
+    public void stop() {
+        addItem("Stopping..\n");
+    }
+
+    @Override
+    public void destroy() {
+        addItem("Prepare to be boarded..\n");
+    }
+    
+    public void addItem(String word) {
+        System.out.println(word);
+        buffer.append(word);
+        repaint();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.drawRect(0, 0, getWidth(), getHeight());
+
+        g.drawString(buffer.toString(), 10, 20);
+    }
+
+    StringBuffer buffer;
 }
