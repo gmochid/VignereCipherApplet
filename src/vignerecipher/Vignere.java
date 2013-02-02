@@ -5,14 +5,6 @@
 
 package vignerecipher;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.IDN;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author gmochid
@@ -88,10 +80,8 @@ public class Vignere {
     public static String encipher256(String plaintext, String key) {
         StringBuilder sb = new StringBuilder();
         int len = key.length();
-        byte[] bytes = new byte[len];
         for (int i = 0; i < plaintext.length(); i++) {
             sb.append((char)((plaintext.charAt(i) + key.charAt(i % len)) % 256));
-            bytes[i] = (byte) ((byte) (plaintext.charAt(i) + key.charAt(i % len)) % 256);
         }
         return sb.toString();
     }
@@ -105,7 +95,7 @@ public class Vignere {
         int len = key.length();
         for (int i = 0; i < cipher.length(); i++) {
             int x = ((cipher.charAt(i) - key.charAt(i % len)) % 256);
-            x = x < 0 ? x + 26 : x ;
+            x = x < 0 ? x + 256 : x ;
             sb.append((char)x);
         }
         return sb.toString();
@@ -117,8 +107,8 @@ public class Vignere {
 
     public static void main(String[] args) {
         String s = "Paskasius Wahyu Wibisono";
-        String cipher = encipher256(s);
+        String cipher = encipher(s, "qwewq");
         System.out.println(cipher);
-        System.out.println(decipher256(cipher));
+        System.out.println(decipher(cipher, "qwewq"));
     }
 }
