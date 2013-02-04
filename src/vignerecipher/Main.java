@@ -117,7 +117,7 @@ public class Main extends JApplet implements ActionListener {
             for (char i = '0'; i <= '9'; i++) {
                 StringBuffer tmp = new StringBuffer();
                 tmp.append(i);
-                if((tmpInput.contains(tmp)) && (key.getText().contains(tmp))) {
+                if((tmpInput.contains(tmp)) || (key.getText().contains(tmp))) {
                     JOptionPane.showMessageDialog(this, "Tidak boleh ada karakter angka dalam perintah 'Encipher dan 'Decipher'");
                     return;
                 }
